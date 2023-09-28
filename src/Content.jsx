@@ -2,6 +2,8 @@ import { useState, useEffect } from "react"
 import axios from "axios"
 import { Routes, Route } from "react-router-dom";
 import { MoviesIndex } from "./MoviesIndex";
+import { Signup } from "./Signup";
+import { Login } from "./Login";
 
 
 export function Content() {
@@ -17,7 +19,12 @@ const handleIndexMovies = () => {
     useEffect(handleIndexMovies, []);
   return (
     <div>
-<MoviesIndex movies={movies}/>
+      <Routes>
+      <Route path="/signup" element={<Signup />} />
+      <Route path="/login" element={<Login />} />
+<Route path="/movies" element={<MoviesIndex movies={movies}/>
+} />
+      </Routes>
     </div>
   )
 }
