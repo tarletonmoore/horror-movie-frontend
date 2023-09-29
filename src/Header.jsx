@@ -22,9 +22,11 @@ authenticationLinks = (
       <>
         <li className="nav-item">
           <LogoutLink />
-
         </li>
-       
+       <li className="nav-item">
+       <Link to="/me" className="nav-link">Profile</Link>
+
+       </li>
       </>
     )
   }

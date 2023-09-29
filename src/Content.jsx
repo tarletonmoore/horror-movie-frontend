@@ -4,10 +4,11 @@ import { Routes, Route } from "react-router-dom";
 import { MoviesIndex } from "./MoviesIndex";
 import { Signup } from "./Signup";
 import { Login } from "./Login";
-
+import { Profile } from "./Profile";
 
 export function Content() {
 const [movies, setMovies] = useState([])
+const [currentUser, setCurrentUser] = useState({movies: []})
 
 const handleIndexMovies = () => {
        axios.get("http://localhost:3000/movies.json").then((response) => {
@@ -15,15 +16,23 @@ const handleIndexMovies = () => {
          setMovies(response.data);
        });
      };
+
+    const userData = () => {
+      axios.get("http://localhost:3000/me.json").then((response) => {
+        console.log(response.data);
+         setCurrentUser(response.data);
+      });
   
+    }
+  useEffect(userData, [])
     useEffect(handleIndexMovies, []);
   return (
     <div>
       <Routes>
       <Route path="/signup" element={<Signup />} />
       <Route path="/login" element={<Login />} />
-<Route path="/movies" element={<MoviesIndex movies={movies}/>
-} />
+<Route path="/movies" element={<MoviesIndex movies={movies}/>} />
+<Route path="/me" element={<Profile currentUser={currentUser} />} />
       </Routes>
     </div>
   )
