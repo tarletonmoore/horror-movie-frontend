@@ -1,4 +1,6 @@
+
 export function MoviesIndex(props) {
+
   return (
     <div>
       <h1>All Movies</h1>
@@ -8,6 +10,7 @@ export function MoviesIndex(props) {
            <img src={movie.image_url} width="100px" height="150px"/>
            <p>Description: {movie.description}</p>
            <p>Subgenre: {movie.subgenre}</p>
+           <a href={`/movies/${movie.id}`}><button>Go to show page</button></a>
          </div>
        ))}
     </div>

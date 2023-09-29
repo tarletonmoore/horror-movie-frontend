@@ -1,7 +1,15 @@
+import axios from "axios";
 
 export function Profile(props) {
-// console.log(props.currentUser.movies.map(movie => movie.title))
-  return(
+  const handleDestroyFavorite = (favorite) => {
+    console.log("handleDestroyFavorite", favorite);
+    console.log(props.currentUser.favorites.map(f => f.id))
+    // axios.delete(`http://localhost:3000/favorites/2.json`).then((response) => {
+    //   // setFavorites(favorites.filter((f) => f.id !== favorite.id));
+    //   window.location.href = '/me'
+    //  });
+  };
+ return(
 <div>
   <img src={props.currentUser.image_url} width="150px" height="200px"/>
   <h2>{props.currentUser.name}</h2>
@@ -15,7 +23,7 @@ export function Profile(props) {
     <h3>{movie.title}</h3>
     <p>Description: {movie.description}</p>
     <p>Subgenre: {movie.subgenre}</p>
-    
+    <button onClick={() => {handleDestroyFavorite()}}>Click</button>
     </div>
     ))}
 </div>
