@@ -27,6 +27,17 @@ export function MoviesShow() {
     })
   }
 
+  const handleAddReview =  (event) => {
+    event.preventDefault()
+    const params = new FormData(event.target);
+
+    console.log('adding to reviews')
+    axios.post("http://localhost:3000/reviews.json", params).then(response => {
+      console.log(response.data)
+      window.location.reload(false)
+    })
+  }
+
   useEffect(getMovieData, [])
   return(
     <div>
@@ -48,11 +59,20 @@ export function MoviesShow() {
      <br></br>
          <h3>Reviews</h3>
          {movie.reviews.map((rev) => (
-          <div>
+          <div key={rev.id}>
             <p>{rev.user.name}: {rev.review}</p>
             </div>
          ))}
-      
+             <form onSubmit={handleAddReview}>
+       
+       <div>
+         <input name="movie_id" type="hidden" defaultValue={params.id} />
+       </div>
+       <div>
+           Review: <input defaultValue={movie.review} name="review" type="text" />
+         </div>
+       <button>Add Review</button>  
+     </form>
        </div>
      
   </div>
