@@ -1,13 +1,15 @@
 import axios from "axios";
 
 export function Profile(props) {
-  const handleDestroyFavorite = (favorite) => {
-    console.log("handleDestroyFavorite", favorite);
-    console.log(props.currentUser.favorites.map(f => f.id))
-    // axios.delete(`http://localhost:3000/favorites/2.json`).then((response) => {
-    //   // setFavorites(favorites.filter((f) => f.id !== favorite.id));
-    //   window.location.href = '/me'
-    //  });
+
+
+  console.log(props.currentUser.favorites)
+  const handleDestroyFavorite = (id) => {
+    console.log("handleDestroyFavorite", id);
+    console.log(props.currentUser.favorites.map(f => (f.id)))
+    axios.delete(`http://localhost:3000/favorites/${id}.json`).then((response) => {
+      window.location.href = '/me'
+     });
   };
  return(
 <div>
@@ -15,17 +17,17 @@ export function Profile(props) {
   <h2>{props.currentUser.name}</h2>
   <div>
     <h2>Favorites</h2>
-    
-{props.currentUser.movies.map((movie) => (
-  <div key={movie.id}>
-    
-      <img src={movie.image_url} width="100px" height="150px"/>
-    <h3>{movie.title}</h3>
-    <p>Description: {movie.description}</p>
-    <p>Subgenre: {movie.subgenre}</p>
-    <button onClick={() => {handleDestroyFavorite()}}>Click</button>
-    </div>
-    ))}
+    {props.currentUser.favorites.map((fav) => (
+      
+<div key={fav.id}>
+    <img src={fav.movie.image_url} width="100px" height="150px"/>
+  <h3>{fav.movie.title}</h3>
+  <p>Description: {fav.movie.description}</p>
+  <p>Subgenre: {fav.movie.subgenre}</p>
+  <button onClick={() => {handleDestroyFavorite(fav.id)}}>Click</button>
+  </div>      
+      ))}
+
 </div>
 </div>
   )

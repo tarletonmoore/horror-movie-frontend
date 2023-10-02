@@ -9,7 +9,8 @@ import { MoviesShow } from "./MoviesShow";
 
 export function Content() {
 const [movies, setMovies] = useState([])
-const [currentUser, setCurrentUser] = useState({movies: []})
+const [currentUser, setCurrentUser] = useState({favorites: [], movies: []})
+
 
 const handleIndexMovies = () => {
        axios.get("http://localhost:3000/movies.json").then((response) => {
@@ -27,7 +28,6 @@ const handleIndexMovies = () => {
     }
 
 
-
   useEffect(userData, [])
     useEffect(handleIndexMovies, []);
   return (
@@ -36,7 +36,7 @@ const handleIndexMovies = () => {
       <Route path="/signup" element={<Signup />} />
       <Route path="/login" element={<Login />} />
 <Route path="/movies" element={<MoviesIndex movies={movies}/>} />
-<Route path="/me" element={<Profile currentUser={currentUser} />} />
+<Route path="/me" element={<Profile currentUser={currentUser}  />} />
 <Route path="/movies/:id" element={<MoviesShow />} />
       </Routes>
     </div>
