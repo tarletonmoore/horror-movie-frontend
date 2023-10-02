@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom"
 
 
 export function MoviesShow() {
-  const [movie, setMovie] = useState({})
+  const [movie, setMovie] = useState({reviews: []})
 
   const params = useParams()
 
@@ -32,19 +32,27 @@ export function MoviesShow() {
     <div>
     <h1>Movie Info</h1>
      
-       <div >
+       <div key={movie.id}>
          <h2>{movie.title}</h2>
          <img src={movie.image_url} width="100px" height="150px"/>
          <p>Description: {movie.description}</p>
          <p>Subgenre: {movie.subgenre}</p>
          <form onSubmit={handleAddToFavorite}>
        
-        <div>
-          <input name="movie_id" type="hidden" defaultValue={params.id} />
-        </div>
-     
-        <button>Favorite</button>  
-      </form>
+       <div>
+         <input name="movie_id" type="hidden" defaultValue={params.id} />
+       </div>
+    
+       <button>Favorite</button>  
+     </form>
+     <br></br>
+         <h3>Reviews</h3>
+         {movie.reviews.map((rev) => (
+          <div>
+            <p>{rev.user.name}: {rev.review}</p>
+            </div>
+         ))}
+      
        </div>
      
   </div>

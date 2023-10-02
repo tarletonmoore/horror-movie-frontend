@@ -24,7 +24,7 @@ export function Profile(props) {
   <h3>{fav.movie.title}</h3>
   <p>Description: {fav.movie.description}</p>
   <p>Subgenre: {fav.movie.subgenre}</p>
-  <button onClick={() => {handleDestroyFavorite(fav.id)}}>Click</button>
+  <button onClick={() => {handleDestroyFavorite(fav.id)}}>Remove</button>
   </div>      
       ))}
 
