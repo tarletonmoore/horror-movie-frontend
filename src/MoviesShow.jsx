@@ -44,6 +44,8 @@ export function MoviesShow() {
     <h1>Movie Info</h1>
      
        <div key={movie.id}>
+       <div className="card">
+<div className="card-body">
          <h2>{movie.title}</h2>
          <img src={movie.image_url} width="100px" height="150px"/>
          <p>Description: {movie.description}</p>
@@ -56,7 +58,11 @@ export function MoviesShow() {
     
        <button>Favorite</button>  
      </form>
+     </div>
+     </div>
      <br></br>
+     <div className="card">
+<div className="card-body">
          <h3>Reviews</h3>
          {movie.reviews.map((rev) => (
           <div key={rev.id}>
@@ -71,10 +77,12 @@ export function MoviesShow() {
        <div>
            Review: <input defaultValue={movie.review} name="review" type="text" />
          </div>
+         <br></br>
        <button>Add Review</button>  
      </form>
        </div>
-     
+     </div>
+     </div>
   </div>
 
   )

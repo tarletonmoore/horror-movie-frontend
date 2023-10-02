@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
 import { LogoutLink } from "./LogoutLink";
 
-export function Header() {
+export function Header(props) {
+
+
+  
   let authenticationLinks;
 
   if (localStorage.jwt === undefined) {
@@ -46,6 +49,41 @@ authenticationLinks = (
       <li className="nav-item">
           <Link to="/movies" className="nav-link" >All Movies</Link>
 
+        </li>
+
+        <li className="nav-item dropdown">
+          <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Subgenres
+          </a>
+          <ul className="dropdown-menu">
+          <label>
+
+
+{/* <select > */}
+ {/* value={props.movies} 
+ onChange={handleChange}  */}
+
+{props.movies.map(movie => (
+  
+    <option 
+    // value={movie} 
+    className="dropdown-item">{movie.subgenre}</option>
+  
+))}
+  {/* <option value={}>Fruit</option>
+
+  <option value="vegetable">Vegetable</option>
+
+  <option value="meat">Meat</option> */}
+
+{/* </select> */}
+
+</label>
+            {/* <li><a className="dropdown-item" href="#">New Post</a></li>
+            <li><a className="dropdown-item" href="#">Another action</a></li>
+            <li><hr className="dropdown-divider"/></li>
+            <li><a className="dropdown-item" href="#">Something else here</a></li> */}
+          </ul>
         </li>
     
       </ul>

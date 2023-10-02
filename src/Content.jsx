@@ -7,17 +7,17 @@ import { Login } from "./Login";
 import { Profile } from "./Profile";
 import { MoviesShow } from "./MoviesShow";
 
-export function Content() {
-const [movies, setMovies] = useState([])
+export function Content({movies}) {
+// const [movies, setMovies] = useState([])
 const [currentUser, setCurrentUser] = useState({favorites: [], movies: []})
 
 
-const handleIndexMovies = () => {
-       axios.get("http://localhost:3000/movies.json").then((response) => {
-         console.log(response.data);
-         setMovies(response.data);
-       });
-     };
+// const handleIndexMovies = () => {
+//        axios.get("http://localhost:3000/movies.json").then((response) => {
+//          console.log(response.data);
+//          setMovies(response.data);
+//        });
+//      };
 
     const userData = () => {
       axios.get("http://localhost:3000/me.json").then((response) => {
@@ -29,7 +29,7 @@ const handleIndexMovies = () => {
 
 
   useEffect(userData, [])
-    useEffect(handleIndexMovies, []);
+    // useEffect(handleIndexMovies, []);
   return (
     <div>
       <Routes>
