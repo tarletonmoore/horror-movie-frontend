@@ -58,7 +58,7 @@ export function MoviesIndex(props) {
       />
 
       <div className="container">
-        <h1>All Movies</h1>
+        <h1 className="indexheader">All Movies</h1>
         {filteredMovies.length > 0 ? (
           filteredMovies.map((movie) => (
             <div key={movie.id} className="movies">

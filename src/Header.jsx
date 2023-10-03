@@ -50,7 +50,10 @@ authenticationLinks = (
           <Link to="/movies" className="nav-link" >All Movies</Link>
 
         </li>
+        <li className="nav-item">
+          <Link to="/movies/most_liked" className="nav-link" >Most Liked</Link>
 
+        </li>
     
       </ul>
     

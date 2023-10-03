@@ -6,6 +6,7 @@ import { Signup } from "./Signup";
 import { Login } from "./Login";
 import { Profile } from "./Profile";
 import { MoviesShow } from "./MoviesShow";
+import { MostLiked } from "./MostLiked";
 
 export function Content({movies}) {
 // const [movies, setMovies] = useState([])
@@ -38,6 +39,7 @@ const [currentUser, setCurrentUser] = useState({favorites: [], movies: []})
 <Route path="/movies" element={<MoviesIndex movies={movies}/>} />
 <Route path="/me" element={<Profile currentUser={currentUser}  />} />
 <Route path="/movies/:id" element={<MoviesShow />} />
+<Route path="/movies/most_liked" element={<MostLiked />} />
       </Routes>
     </div>
   )

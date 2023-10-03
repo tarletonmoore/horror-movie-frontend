@@ -101,3 +101,15 @@ h1 {
   color: #333;
   text-decoration: none;
 }
+
+li {
+  margin-left: 10px;
+}
+
+.likedheader {
+  text-align: center;
+}
+
+.indexheader {
+  text-align: center;
+}
