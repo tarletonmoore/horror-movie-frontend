@@ -88,3 +88,16 @@ h1 {
 .container {
   color: red;
 }
+
+.dropdown-box {
+  background-color: #f0f0f0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  display: inline-block;
+}
+
+.box-text {
+  color: #333;
+  text-decoration: none;
+}

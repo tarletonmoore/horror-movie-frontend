@@ -30,21 +30,25 @@ export function Login() {
 
   return (
     <div id="login">
+      <div className="card">
+        <div className="card-body">
       <h1>Login</h1>
       <ul>
         {errors.map((error) => (
           <li key={error}>{error}</li>
         ))}
       </ul>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} >
         <div>
           Email: <input name="email" type="email" />
         </div>
         <div>
           Password: <input name="password" type="password" />
         </div>
-        <button type="submit">Login</button>
+        <button type="submit"  style={{"backgroundColor": "white"}}>Login</button>
       </form>
+      </div>
+      </div>
     </div>
   );
 }

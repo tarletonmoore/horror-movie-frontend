@@ -29,7 +29,9 @@ export function Profile(props) {
   <button onClick={() => {handleDestroyFavorite(fav.id)}}>Remove</button>
   </div>      
   </div>
+  <br></br>
 </div>
+
       ))}
 
 
