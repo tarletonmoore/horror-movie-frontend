@@ -30,6 +30,14 @@ authenticationLinks = (
        <Link to="/me" className="nav-link">Profile</Link>
 
        </li>
+       <li className="nav-item">
+          <Link to="/movies" className="nav-link" >All Movies</Link>
+
+        </li>
+        <li className="nav-item">
+          <Link to="/movies/most_liked" className="nav-link" >Most Liked</Link>
+
+        </li>
       </>
     )
   }
@@ -46,14 +54,14 @@ authenticationLinks = (
           <a className="nav-link active" aria-current="page" href="/movies">Home</a>
         </li>
               {authenticationLinks}
-      <li className="nav-item">
+      {/* <li className="nav-item">
           <Link to="/movies" className="nav-link" >All Movies</Link>
 
         </li>
         <li className="nav-item">
           <Link to="/movies/most_liked" className="nav-link" >Most Liked</Link>
 
-        </li>
+        </li> */}
     
       </ul>
     

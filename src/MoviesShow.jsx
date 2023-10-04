@@ -10,9 +10,16 @@ export function MoviesShow(props) {
   const params = useParams();
 
   const getMovieData = () => {
-    axios.get(`http://localhost:3000/movies/${params.id}.json`).then((response) => {
-      setMovie(response.data);
-    });
+    if (localStorage.jwt === undefined && window.location.href !== "http://localhost:5173/login") {
+  console.log("inside if statement")
+  window.location.href = "/login"
+}
+else{
+  axios.get(`http://localhost:3000/movies/${params.id}.json`).then((response) => {
+    setMovie(response.data);
+  });
+  }
+ 
   };
 
   const checkIsFavorited = () => {
