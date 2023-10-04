@@ -2,6 +2,7 @@ import { Header } from "./Header";
 import { Content } from "./Content";
 import { Footer } from "./Footer";
 import { BrowserRouter } from "react-router-dom";
+import BackgroundMusic from "./BackgroundMusic";
 
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -26,6 +27,7 @@ else{
 
   return (
     <div className="container">
+      <BackgroundMusic />
     <BrowserRouter>
     <Header movies={movies}/>
     <br></br>

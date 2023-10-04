@@ -1,5 +1,6 @@
 import { useState } from "react";
 import audio from "./assets/blood_sound.mp3";
+import { Link } from "react-router-dom";
 
 export function MoviesIndex(props) {
   const [searchFilter, setSearchFilter] = useState("");
@@ -83,9 +84,12 @@ export function MoviesIndex(props) {
                   />
                   <p>Description: {movie.description}</p>
                   <p>Subgenre: {movie.subgenre}</p>
-                  <a href={`/movies/${movie.id}`}>
+                  {/* <a href={`/movies/${movie.id}`}>
                     <button>Go to show page</button>
-                  </a>
+                  </a> */}
+                  <Link to={`/movies/${movie.id}`}>
+          <button>Go to show page</button>
+        </Link>
                   <br></br>
                 </div>
               </div>

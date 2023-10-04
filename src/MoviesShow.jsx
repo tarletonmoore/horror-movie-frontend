@@ -1,13 +1,23 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import audio from "./assets/child_laugh.mp3";
+
 
 export function MoviesShow(props) {
   const [movie, setMovie] = useState({ reviews: [] });
   const [isFavorited, setIsFavorited] = useState(false);
   const [favoriteId, setFavoriteId] = useState(null);
+  const [audioElement] = useState(new Audio(audio));
+
 
   const params = useParams();
+  
+  const playAudio = () => {
+    audioElement.play().catch((error) => {
+      console.error("Error playing audio:", error);
+    });
+  }; 
 
   const getMovieData = () => {
     if (localStorage.jwt === undefined && window.location.href !== "http://localhost:5173/login") {
@@ -17,6 +27,7 @@ export function MoviesShow(props) {
 else{
   axios.get(`http://localhost:3000/movies/${params.id}.json`).then((response) => {
     setMovie(response.data);
+    playAudio()
   });
   }
  
