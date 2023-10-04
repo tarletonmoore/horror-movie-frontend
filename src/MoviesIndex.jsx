@@ -1,13 +1,16 @@
 import { useState } from "react";
+import audio from "./assets/blood_sound.mp3";
 
 export function MoviesIndex(props) {
   const [searchFilter, setSearchFilter] = useState("");
   const [selectedSubgenre, setSelectedSubgenre] = useState("");
+  const [audioElement] = useState(new Audio(audio));
 
   const uniqueSubgenres = new Set(props.movies.map((movie) => movie.subgenre));
 
   const handleSubgenreChange = (subgenre) => {
     setSelectedSubgenre(subgenre);
+    playAudio()
   };
 
   const filteredMovies = props.movies
@@ -16,6 +19,12 @@ export function MoviesIndex(props) {
         movie.title.toLowerCase().includes(searchFilter.toLowerCase()) &&
         (selectedSubgenre === "" || movie.subgenre === selectedSubgenre)
     );
+
+    const playAudio = () => {
+      audioElement.play().catch((error) => {
+        console.error("Error playing audio:", error);
+      });
+    };    
 
   return (
     <div>
