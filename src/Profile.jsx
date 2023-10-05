@@ -6,13 +6,25 @@ export function Profile(props) {
 const [recommendations, setRecomendations] = useState([])
 
   console.log(props.currentUser.favorites)
+  // const handleDestroyFavorite = (id) => {
+  //   console.log("handleDestroyFavorite", id);
+  //   console.log(props.currentUser.favorites.map(f => (f.id)))
+  //   axios.delete(`http://localhost:3000/favorites/${id}.json`).then((response) => {
+  //     window.location.href = '/me'
+  //    });
+  // };
   const handleDestroyFavorite = (id) => {
-    console.log("handleDestroyFavorite", id);
-    console.log(props.currentUser.favorites.map(f => (f.id)))
     axios.delete(`http://localhost:3000/favorites/${id}.json`).then((response) => {
-      window.location.href = '/me'
-     });
+      const updatedFavorites = props.currentUser.favorites.filter(
+        (fav) => fav.id !== id
+      );
+      props.setCurrentUser({
+        ...props.currentUser,
+        favorites: updatedFavorites,
+      });
+    });
   };
+  
 
 const getRecommendations = () => {
   axios.get("http://localhost:3000/movies/recommendations.json").then(response => {
@@ -38,6 +50,9 @@ useEffect(getRecommendations, [])
   <p>Description: {fav.movie.description}</p>
   <p>Subgenre: {fav.movie.subgenre}</p>
   <button onClick={() => {handleDestroyFavorite(fav.id)}}>Remove</button>
+  {/* <button onClick={() => props.toggleFavorite(fav.id)}>
+          Remove
+        </button> */}
   </div>      
   </div>
   <br></br>

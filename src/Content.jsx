@@ -34,8 +34,8 @@ const [currentUser, setCurrentUser] = useState({favorites: [], movies: []})
       <Route path="/signup" element={<Signup />} />
       <Route path="/login" element={<Login />} />
 <Route path="/movies" element={<MoviesIndex movies={movies}/>} />
-<Route path="/me" element={<Profile currentUser={currentUser}  />} />
-<Route path="/movies/:id" element={<MoviesShow />} />
+<Route path="/me" element={<Profile currentUser={currentUser}   setCurrentUser={setCurrentUser}/>} />
+<Route path="/movies/:id" element={<MoviesShow currentUser={currentUser} setCurrentUser={setCurrentUser}/>} />
 <Route path="/movies/most_liked" element={<MostLiked />} />
       </Routes>
     </div>

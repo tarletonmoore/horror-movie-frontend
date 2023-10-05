@@ -12,7 +12,7 @@ export function MoviesShow(props) {
 
 
   const params = useParams();
-  
+
   const playAudio = () => {
     audioElement.play().catch((error) => {
       console.error("Error playing audio:", error);
@@ -50,12 +50,24 @@ else{
   const handleAddReview = (event) => {
     event.preventDefault();
     const params = new FormData(event.target);
-
-    console.log('adding to reviews');
-    axios.post("http://localhost:3000/reviews.json", params).then((response) => {
-      console.log(response.data);
-      window.location.reload(false);
-    });
+  
+    axios
+      .post("http://localhost:3000/reviews.json", params)
+      .then((response) => {
+        console.log(response.data);
+  
+        const newReview = response.data;
+  
+        setMovie((prevMovie) => ({
+          ...prevMovie,
+          reviews: [...prevMovie.reviews, newReview],
+        }));
+  
+        event.target.elements.review.value = "";
+      })
+      .catch((error) => {
+        console.error("Error adding review:", error);
+      });
   };
 
   useEffect(() => {
