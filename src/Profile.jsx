@@ -1,7 +1,9 @@
 import axios from "axios";
+import { MovieRecommendations } from "./MovieRecommendations";
+import { useState, useEffect } from "react";
 
 export function Profile(props) {
-
+const [recommendations, setRecomendations] = useState([])
 
   console.log(props.currentUser.favorites)
   const handleDestroyFavorite = (id) => {
@@ -11,6 +13,15 @@ export function Profile(props) {
       window.location.href = '/me'
      });
   };
+
+const getRecommendations = () => {
+  axios.get("http://localhost:3000/movies/recommendations.json").then(response => {
+    setRecomendations(response.data)
+  })
+}
+
+useEffect(getRecommendations, [])
+
  return(
 <div>
   <img src={props.currentUser.image_url} width="150px" height="200px"/>
@@ -36,6 +47,7 @@ export function Profile(props) {
 
 
 </div>
+<MovieRecommendations recommendations={recommendations}/>
 </div>
   )
 }

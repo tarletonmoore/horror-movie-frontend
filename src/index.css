@@ -113,3 +113,17 @@ li {
 .indexheader {
   text-align: center;
 }
+
+a:hover {
+  background-image: url("./assets/blood_texture2.png");
+  background-size: cover;
+  color: red;
+}
+
+.recommendations {
+  margin-left: 10px;
+}
+
+.recommendationsheader {
+  margin: 10px;
+}
