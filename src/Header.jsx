@@ -42,6 +42,10 @@ authenticationLinks = (
           <Link to="/movies/recently_added" className="nav-link" >Recently Added</Link>
 
         </li>
+        <li className="nav-item">
+          <Link to="/now_playing" className="nav-link" >Now Playing</Link>
+
+        </li>
       </>
     )
   }

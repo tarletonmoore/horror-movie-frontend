@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import axios from "axios"
+import { Link } from "react-router-dom"
 
 export function MostLiked() {
   const [mostLiked, setMostLiked] = useState([])
@@ -33,9 +34,12 @@ useEffect(getMostLiked, [])
 
             <p>Description: {movie.description}</p>
             <p>Subgenre: {movie.subgenre}</p>
-            <a href={`/movies/${movie.id}`}>
+            {/* <a href={`/movies/${movie.id}`}>
                     <button>Go to show page</button>
-                  </a>
+                  </a> */}
+                   <Link to={`/movies/${movie.id}`}>
+          <button>Go to show page</button>
+        </Link>
             </li>
 
         </div>

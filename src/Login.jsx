@@ -40,7 +40,7 @@ export function Login() {
       </ul>
       <form onSubmit={handleSubmit} >
         <div>
-         <p className="login"> Email: <input name="email" type="email" /></p>
+         <p className="loginemail"> Email: <input name="email" type="email" /></p>
         </div>
         <div>
          <p> Password: <input name="password" type="password" /></p>

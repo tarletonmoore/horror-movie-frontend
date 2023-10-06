@@ -207,3 +207,33 @@ li.dropdown-item {
   text-align: center;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
+
+.fetchtitle {
+  color: white;
+  text-align: center;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.fetchbutton {
+  margin-left: 35px;
+}
+
+.loginemail {
+  margin-left: 30px;
+}
+
+.signupname {
+  margin-left: 120px;
+}
+
+.signupimage {
+  margin-left: 85px;
+}
+
+.signupemail {
+  margin-left: 125px;
+}
+
+.signuppass {
+  margin-left: 95px;
+}
