@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 export function Profile(props) {
 const [recommendations, setRecomendations] = useState([])
 
-  console.log(props.currentUser.favorites)
+  // console.log(props.currentUser.favorites)
   // const handleDestroyFavorite = (id) => {
   //   console.log("handleDestroyFavorite", id);
   //   console.log(props.currentUser.favorites.map(f => (f.id)))

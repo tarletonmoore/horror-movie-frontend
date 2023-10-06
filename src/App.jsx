@@ -12,12 +12,12 @@ function App() {
 
   const handleIndexMovies = () => {
 if (localStorage.jwt === undefined && window.location.href !== "http://localhost:5173/login") {
-  console.log("inside if statement")
+  // console.log("inside if statement")
   window.location.href = "/login"
 }
 else{
     axios.get("http://localhost:3000/movies.json").then((response) => {
-      console.log(response.data);
+      // console.log(response.data);
       setMovies(response.data);
     });
   }

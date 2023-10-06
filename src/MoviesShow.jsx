@@ -28,7 +28,7 @@ export function MoviesShow(props) {
 
   const getMovieData = () => {
     if (localStorage.jwt === undefined && window.location.href !== "http://localhost:5173/login") {
-  console.log("inside if statement")
+  // console.log("inside if statement")
   window.location.href = "/login"
 }
 else{
@@ -61,7 +61,7 @@ else{
     axios
       .post("http://localhost:3000/reviews.json", params)
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
   playAudio()
         const newReview = response.data;
   

@@ -10,7 +10,7 @@ const getMostLiked = () => {
 }
 else{
   axios.get("http://localhost:3000/movies/most_liked.json").then((response) => {
-    console.log(response.data)
+    // console.log(response.data)
     setMostLiked(response.data)
   })
   }
@@ -34,9 +34,7 @@ useEffect(getMostLiked, [])
 
             <p>Description: {movie.description}</p>
             <p>Subgenre: {movie.subgenre}</p>
-            {/* <a href={`/movies/${movie.id}`}>
-                    <button>Go to show page</button>
-                  </a> */}
+            
                    <Link to={`/movies/${movie.id}`}>
           <button>Go to show page</button>
         </Link>

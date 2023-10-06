@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 export function MovieRecommendations(props) {
 
-console.log(props.recommendations)
+// console.log(props.recommendations)
   return(
     <div>
 

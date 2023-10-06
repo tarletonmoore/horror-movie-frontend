@@ -16,12 +16,12 @@ const [currentUser, setCurrentUser] = useState({favorites: [], movies: []})
 
     const userData = () => {
       if (localStorage.jwt === undefined && window.location.href !== "http://localhost:5173/login") {
-        console.log("inside if statement")
+        // console.log("inside if statement")
         window.location.href = "/login"
       }
       else{
         axios.get("http://localhost:3000/me.json").then((response) => {
-          console.log(response.data);
+          // console.log(response.data);
            setCurrentUser(response.data);
         });
         }
