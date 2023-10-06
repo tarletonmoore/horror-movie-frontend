@@ -4,15 +4,16 @@ export function MovieRecommendations(props) {
 console.log(props.recommendations)
   return(
     <div>
-      <div className="card">
+
       <h1 className="recommendationsheader">Recommendations:</h1>
       <div className="recommendations">
-
       <div className="row row-cols-2">
 
       {props.recommendations.map(recommendation => (
-        <div key={recommendation.id} className="card-body">
-                <div className="col-6">
+        <div key={recommendation.id} className="col-6">
+                <div className="card">
+
+                <div className="card-body">
 
 <img src={recommendation.image_url} width="100px" height="150px"/>
 <h2>{recommendation.title}</h2>
@@ -23,9 +24,10 @@ console.log(props.recommendations)
         </Link>
           </div>
           </div>
+          </div>
+
       ))}
       </div>
-</div>
       </div>
     </div>
   )

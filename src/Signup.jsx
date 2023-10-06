@@ -25,7 +25,7 @@ export function Signup() {
     <div id="signup">
       <div className="card">
         <div className="card-body">
-          <h1>Signup</h1>
+          <h1 className="signup">Signup</h1>
       <ul>
         {errors.map((error) => (
           <li key={error}>{error}</li>
@@ -33,19 +33,19 @@ export function Signup() {
       </ul>
       <form onSubmit={handleSubmit}>
         <div>
-          Name: <input name="name" type="text" />
+         <p className="signup"> Name: <input name="name" type="text" /></p>
         </div>
         <div>
-          Image URL: <input name="image_url" type="text" />
+         <p> Image URL: <input name="image_url" type="text" /></p>
         </div>
         <div>
-          Email: <input name="email" type="email" />
+          <p>Email: <input name="email" type="email" /></p>
         </div>
         <div>
-          Password: <input name="password" type="password" />
+          <p>Password: <input name="password" type="password" /></p>
         </div>
         <div>
-          Password confirmation: <input name="password_confirmation" type="password" />
+         <p> Password confirmation: <input name="password_confirmation" type="password" /></p>
         </div>
         <button type="submit" style={{"backgroundColor": "white"}}>Signup</button>
       </form>

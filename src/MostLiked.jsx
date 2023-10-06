@@ -18,16 +18,19 @@ else{
 useEffect(getMostLiked, [])
   return(
     <div>
-    <h1 className="likedheader">Most Favorited</h1>
+    <h1 className="likedheader">Most Liked</h1>
     <ol>
    {mostLiked.map((movie) => (
     
       <div key={movie.id}>
 <div className="card">
           <div className="card-body">
-          <li>
-            <h2>{movie.title}</h2>
+          <li className="likedlist">
             <img src={movie.image_url} width="100px" height="150px" alt={movie.title} />
+            <br></br>
+            <br></br>
+            <h2>{movie.title}</h2>
+
             <p>Description: {movie.description}</p>
             <p>Subgenre: {movie.subgenre}</p>
             <a href={`/movies/${movie.id}`}>

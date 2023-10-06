@@ -1,6 +1,7 @@
 import { useState } from "react";
 import audio from "./assets/blood_sound.mp3";
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom"
+import welcome from "./assets/welcome2.png"
 
 export function MoviesIndex(props) {
   const [searchFilter, setSearchFilter] = useState("");
@@ -29,7 +30,7 @@ export function MoviesIndex(props) {
 
   return (
     <div>
-    
+    <img src={welcome} className="welcomeimage"/>
            <div className="dropdown-box">
                <a
               className="nav-link dropdown-toggle"
@@ -59,7 +60,7 @@ export function MoviesIndex(props) {
       
 <br></br>
 <br></br>
-      <h4> Search filter:</h4>
+      <h4 className="search"> Search filter:</h4>
       <input
         type="text"
         value={searchFilter}
@@ -75,13 +76,16 @@ export function MoviesIndex(props) {
               <br></br>
               <div className="card">
                 <div className="card-body">
-                  <h2>{movie.title}</h2>
                   <img
                     src={movie.image_url}
                     width="100px"
                     height="150px"
                     alt={movie.title}
                   />
+                  <br></br>
+                  <br></br>
+                  <h2>{movie.title}</h2>
+
                   <p>Description: {movie.description}</p>
                   <p>Subgenre: {movie.subgenre}</p>
                   {/* <a href={`/movies/${movie.id}`}>

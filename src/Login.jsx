@@ -32,7 +32,7 @@ export function Login() {
     <div id="login">
       <div className="card">
         <div className="card-body">
-      <h1>Login</h1>
+      <h1 className="login">Login</h1>
       <ul>
         {errors.map((error) => (
           <li key={error}>{error}</li>
@@ -40,10 +40,10 @@ export function Login() {
       </ul>
       <form onSubmit={handleSubmit} >
         <div>
-          Email: <input name="email" type="email" />
+         <p className="login"> Email: <input name="email" type="email" /></p>
         </div>
         <div>
-          Password: <input name="password" type="password" />
+         <p> Password: <input name="password" type="password" /></p>
         </div>
         <button type="submit"  style={{"backgroundColor": "white"}}>Login</button>
       </form>

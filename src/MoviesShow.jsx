@@ -2,16 +2,23 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import audio from "./assets/child_laugh.mp3";
-
+import whispers from "./assets/whispers2.mp3"
 
 export function MoviesShow(props) {
   const [movie, setMovie] = useState({ reviews: [] });
   const [isFavorited, setIsFavorited] = useState(false);
   const [favoriteId, setFavoriteId] = useState(null);
-  const [audioElement] = useState(new Audio(audio));
+  const [whisperElement] = useState(new Audio(whispers));
+  const [audioElement] = useState(new Audio(audio))
 
 
   const params = useParams();
+
+  const playWhisper = () => {
+    whisperElement.play().catch((error) => {
+      console.error("Error playing audio:", error);
+    });
+  }; 
 
   const playAudio = () => {
     audioElement.play().catch((error) => {
@@ -27,7 +34,7 @@ export function MoviesShow(props) {
 else{
   axios.get(`http://localhost:3000/movies/${params.id}.json`).then((response) => {
     setMovie(response.data);
-    playAudio()
+    playWhisper()
   });
   }
  
@@ -55,7 +62,7 @@ else{
       .post("http://localhost:3000/reviews.json", params)
       .then((response) => {
         console.log(response.data);
-  
+  playAudio()
         const newReview = response.data;
   
         setMovie((prevMovie) => ({
@@ -100,7 +107,7 @@ else{
 
   return (
     <div>
-      <h1>Movie Info</h1>
+      <h1 className="showheader">Movie Info</h1>
 
       <div key={movie.id}>
         <div className="card">
@@ -135,7 +142,7 @@ else{
         <br></br>
         <div className="card">
         <div className="card-body">
-           <h3>Reviews</h3>
+           <h2>Reviews</h2>
            {movie.reviews.map((rev) => (
              <div key={rev.id}>
                <p>
@@ -148,7 +155,7 @@ else{
                <input name="movie_id" type="hidden" defaultValue={params.id} />
              </div>
              <div>
-               Review: <input defaultValue={movie.review} name="review" type="text" />
+               <p>Review: <input defaultValue={movie.review} name="review" type="text" /></p>
              </div>
              <br></br>
              <button>Add Review</button>

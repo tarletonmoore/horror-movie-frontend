@@ -37,16 +37,20 @@ useEffect(getRecommendations, [])
  return(
 <div>
   <img src={props.currentUser.image_url} width="150px" height="200px"/>
-  <h2>{props.currentUser.name}</h2>
+  <h2 className="profileheader">{props.currentUser.name}</h2>
   <div>
-    <h2>Favorites</h2>
+    <h2 className="profilefav">Favorites</h2>
     {props.currentUser.favorites.map((fav) => (
       
 <div key={fav.id}>
 <div className="card">
        <div className="card-body">
+
     <img src={fav.movie.image_url} width="100px" height="150px"/>
-  <h3>{fav.movie.title}</h3>
+    <br></br>
+    <br></br>
+    <h2>{fav.movie.title}</h2>
+
   <p>Description: {fav.movie.description}</p>
   <p>Subgenre: {fav.movie.subgenre}</p>
   <button onClick={() => {handleDestroyFavorite(fav.id)}}>Remove</button>

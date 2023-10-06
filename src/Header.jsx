@@ -38,6 +38,10 @@ authenticationLinks = (
           <Link to="/movies/most_liked" className="nav-link" >Most Liked</Link>
 
         </li>
+        <li className="nav-item">
+          <Link to="/movies/recently_added" className="nav-link" >Recently Added</Link>
+
+        </li>
       </>
     )
   }
