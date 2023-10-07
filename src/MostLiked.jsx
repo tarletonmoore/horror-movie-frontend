@@ -36,7 +36,7 @@ useEffect(getMostLiked, [])
             <p>Subgenre: {movie.subgenre}</p>
             
                    <Link to={`/movies/${movie.id}`}>
-          <button>Go to show page</button>
+          <button className="showbutton">Go to show page</button>
         </Link>
             </li>
 

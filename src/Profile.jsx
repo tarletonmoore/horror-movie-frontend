@@ -53,7 +53,7 @@ useEffect(getRecommendations, [])
 
   <p>Description: {fav.movie.description}</p>
   <p>Subgenre: {fav.movie.subgenre}</p>
-  <button onClick={() => {handleDestroyFavorite(fav.id)}}>Remove</button>
+  <button onClick={() => {handleDestroyFavorite(fav.id)}} className="removebutton">Remove</button>
   {/* <button onClick={() => props.toggleFavorite(fav.id)}>
           Remove
         </button> */}

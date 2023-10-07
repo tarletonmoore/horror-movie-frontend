@@ -100,6 +100,8 @@ h1 {
 .box-text {
   color: #333;
   text-decoration: none;
+  background-image: url("./assets/spatter.png");
+  background-size: 60%;
 }
 
 li {
@@ -236,4 +238,20 @@ li.dropdown-item {
 
 .signuppass {
   margin-left: 95px;
+}
+
+.showbutton:hover {
+  background-image: url("./assets/blood_texture2.png");
+}
+
+.removebutton:hover {
+  background-image: url("./assets/drip.png");
+  background-size: 50%;
+}
+
+.dropdown-item:hover {
+  background-image: url("./assets/spatter.png");
+  background-size: 40%;
+  background-repeat: no-repeat;
+  background-position: right center;
 }

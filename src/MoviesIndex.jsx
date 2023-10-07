@@ -92,7 +92,7 @@ export function MoviesIndex(props) {
                     <button>Go to show page</button>
                   </a> */}
                   <Link to={`/movies/${movie.id}`}>
-          <button>Go to show page</button>
+          <button className="showbutton">Go to show page</button>
         </Link>
                   <br></br>
                 </div>
