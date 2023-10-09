@@ -8,7 +8,7 @@ export function MoviesList() {
   const fetchMovies = async () => {
     try {
       setIsLoading(true);
-      const genreId = 27; 
+      const genreId = 27;
       const response = await axios.get(
         `https://api.themoviedb.org/3/discover/movie?api_key=${import.meta.env.VITE_SOME_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=${genreId}&primary_release_date.gte=2023-01-01&primary_release_date.lte=2023-12-31`
       );
@@ -32,16 +32,16 @@ export function MoviesList() {
       <ul>
         {playingMovies.map((movie) => (
           <div key={movie.id} >
-          <div className="card">
-          <div className="card-body">
-          <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-  alt={movie.title} width="100px" height="150px"/>
-            <h2>{movie.title}</h2>
-            <p>{movie.overview}</p>
-          
-          </div>
-          </div>
-          <br></br>
+            <div className="card">
+              <div className="card-body">
+                <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                  alt={movie.title} width="100px" height="150px" />
+                <h2>{movie.title}</h2>
+                <p>{movie.overview}</p>
+
+              </div>
+            </div>
+            <br></br>
           </div>
         ))}
       </ul>

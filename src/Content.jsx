@@ -8,39 +8,37 @@ import { Profile } from "./Profile";
 import { MoviesShow } from "./MoviesShow";
 import { MostLiked } from "./MostLiked";
 import { RecentlyAdded } from "./RecentlyAdded";
-import {MoviesList} from "./MoviesList"
+import { MoviesList } from "./MoviesList"
 
-export function Content({movies}) {
-const [currentUser, setCurrentUser] = useState({favorites: [], movies: []})
+export function Content({ movies }) {
+  const [currentUser, setCurrentUser] = useState({ favorites: [], movies: [] })
 
 
-    const userData = () => {
-      if (localStorage.jwt === undefined && window.location.href !== "http://localhost:5173/login") {
-        // console.log("inside if statement")
-        window.location.href = "/login"
-      }
-      else{
-        axios.get("http://localhost:3000/me.json").then((response) => {
-          // console.log(response.data);
-           setCurrentUser(response.data);
-        });
-        }
-  
+  const userData = () => {
+    if (localStorage.jwt === undefined && window.location.href !== "http://localhost:5173/login") {
+      window.location.href = "/login"
     }
+    else {
+      axios.get("http://localhost:3000/me.json").then((response) => {
+        setCurrentUser(response.data);
+      });
+    }
+
+  }
 
 
   useEffect(userData, [])
   return (
     <div>
       <Routes>
-      <Route path="/signup" element={<Signup />} />
-      <Route path="/login" element={<Login />} />
-<Route path="/movies" element={<MoviesIndex movies={movies}/>} />
-<Route path="/me" element={<Profile currentUser={currentUser}   setCurrentUser={setCurrentUser}/>} />
-<Route path="/movies/:id" element={<MoviesShow currentUser={currentUser} setCurrentUser={setCurrentUser}/>} />
-<Route path="/movies/most_liked" element={<MostLiked />} />
-<Route path="/movies/recently_added" element={<RecentlyAdded />}/>
-<Route path="/now_playing" element={<MoviesList />}/>
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/movies" element={<MoviesIndex movies={movies} />} />
+        <Route path="/me" element={<Profile currentUser={currentUser} setCurrentUser={setCurrentUser} />} />
+        <Route path="/movies/:id" element={<MoviesShow currentUser={currentUser} setCurrentUser={setCurrentUser} />} />
+        <Route path="/movies/most_liked" element={<MostLiked />} />
+        <Route path="/movies/recently_added" element={<RecentlyAdded />} />
+        <Route path="/now_playing" element={<MoviesList />} />
       </Routes>
     </div>
   )

@@ -18,26 +18,25 @@ export function MoviesShow(props) {
     whisperElement.play().catch((error) => {
       console.error("Error playing audio:", error);
     });
-  }; 
+  };
 
   const playAudio = () => {
     audioElement.play().catch((error) => {
       console.error("Error playing audio:", error);
     });
-  }; 
+  };
 
   const getMovieData = () => {
     if (localStorage.jwt === undefined && window.location.href !== "http://localhost:5173/login") {
-  // console.log("inside if statement")
-  window.location.href = "/login"
-}
-else{
-  axios.get(`http://localhost:3000/movies/${params.id}.json`).then((response) => {
-    setMovie(response.data);
-    playWhisper()
-  });
-  }
- 
+      window.location.href = "/login"
+    }
+    else {
+      axios.get(`http://localhost:3000/movies/${params.id}.json`).then((response) => {
+        setMovie(response.data);
+        playWhisper()
+      });
+    }
+
   };
 
   const checkIsFavorited = () => {
@@ -57,19 +56,18 @@ else{
   const handleAddReview = (event) => {
     event.preventDefault();
     const params = new FormData(event.target);
-  
+
     axios
       .post("http://localhost:3000/reviews.json", params)
       .then((response) => {
-        // console.log(response.data);
-  playAudio()
+        playAudio()
         const newReview = response.data;
-  
+
         setMovie((prevMovie) => ({
           ...prevMovie,
           reviews: [...prevMovie.reviews, newReview],
         }));
-  
+
         event.target.elements.review.value = "";
       })
       .catch((error) => {
@@ -79,15 +77,14 @@ else{
 
   useEffect(() => {
     getMovieData();
-    checkIsFavorited(); 
+    checkIsFavorited();
   }, []);
 
   const handleToggleFavorite = (event) => {
     event.preventDefault();
     const params = new FormData(event.target);
 
-    if (isFavorited) 
-    {
+    if (isFavorited) {
       axios.delete(`http://localhost:3000/favorites/${favoriteId}.json`).then(() => {
         setIsFavorited(false);
         setFavoriteId(null);
@@ -118,7 +115,7 @@ else{
             <p>Subgenre: {movie.subgenre}</p>
             <form onSubmit={
               handleToggleFavorite
-              }>
+            }>
               <div>
                 <input name="movie_id" type="hidden" defaultValue={params.id} />
                 {isFavorited ? (
@@ -126,7 +123,7 @@ else{
                     <input name="favorite_id" type="hidden" defaultValue={favoriteId} />
                     <button type="button" onClick={
                       handleToggleFavorite
-                      }>
+                    }>
                       Remove from Favorites
                     </button>
                   </>
@@ -141,28 +138,28 @@ else{
         </div>
         <br></br>
         <div className="card">
-        <div className="card-body">
-           <h2>Reviews</h2>
-           {movie.reviews.map((rev) => (
-             <div key={rev.id}>
-               <p>
-                 {rev.user.name}: {rev.review}
-               </p>
-             </div>
-           ))}
-           <form onSubmit={handleAddReview}>
-             <div>
-               <input name="movie_id" type="hidden" defaultValue={params.id} />
-             </div>
-             <div>
-               <p>Review: <input defaultValue={movie.review} name="review" type="text" /></p>
-             </div>
-             <br></br>
-             <button>Add Review</button>
-           </form>
-                </div>
-    </div>
-    </div>
+          <div className="card-body">
+            <h2>Reviews</h2>
+            {movie.reviews.map((rev) => (
+              <div key={rev.id}>
+                <p>
+                  {rev.user.name}: {rev.review}
+                </p>
+              </div>
+            ))}
+            <form onSubmit={handleAddReview}>
+              <div>
+                <input name="movie_id" type="hidden" defaultValue={params.id} />
+              </div>
+              <div>
+                <p>Review: <input defaultValue={movie.review} name="review" type="text" /></p>
+              </div>
+              <br></br>
+              <button>Add Review</button>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

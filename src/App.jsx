@@ -11,16 +11,14 @@ function App() {
   const [movies, setMovies] = useState([])
 
   const handleIndexMovies = () => {
-if (localStorage.jwt === undefined && window.location.href !== "http://localhost:5173/login") {
-  // console.log("inside if statement")
-  window.location.href = "/login"
-}
-else{
-    axios.get("http://localhost:3000/movies.json").then((response) => {
-      // console.log(response.data);
-      setMovies(response.data);
-    });
-  }
+    if (localStorage.jwt === undefined && window.location.href !== "http://localhost:5173/login") {
+      window.location.href = "/login"
+    }
+    else {
+      axios.get("http://localhost:3000/movies.json").then((response) => {
+        setMovies(response.data);
+      });
+    }
   };
 
   useEffect(handleIndexMovies, []);
@@ -28,14 +26,14 @@ else{
   return (
     <div className="container">
       <BackgroundMusic />
-    <BrowserRouter>
-    <Header movies={movies}/>
-    <br></br>
-    <Content movies={movies}/>
-    <br></br>
-    <Footer />
-    </BrowserRouter>
-  </div>
+      <BrowserRouter>
+        <Header movies={movies} />
+        <br></br>
+        <Content movies={movies} />
+        <br></br>
+        <Footer />
+      </BrowserRouter>
+    </div>
   )
 }
 

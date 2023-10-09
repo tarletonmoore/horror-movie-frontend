@@ -20,7 +20,7 @@ export function Login() {
         axios.defaults.headers.common["Authorization"] = "Bearer " + response.data.jwt;
         localStorage.setItem("jwt", response.data.jwt);
         event.target.reset();
-        window.location.href = "/movies"; 
+        window.location.href = "/movies";
       })
       .catch((error) => {
         console.log(error.response);
@@ -32,22 +32,22 @@ export function Login() {
     <div id="login">
       <div className="card">
         <div className="card-body">
-      <h1 className="login">Login</h1>
-      <ul>
-        {errors.map((error) => (
-          <li key={error}>{error}</li>
-        ))}
-      </ul>
-      <form onSubmit={handleSubmit} >
-        <div>
-         <p className="loginemail"> Email: <input name="email" type="email" /></p>
+          <h1 className="login">Login</h1>
+          <ul>
+            {errors.map((error) => (
+              <li key={error}>{error}</li>
+            ))}
+          </ul>
+          <form onSubmit={handleSubmit} >
+            <div>
+              <p className="loginemail"> Email: <input name="email" type="email" /></p>
+            </div>
+            <div>
+              <p> Password: <input name="password" type="password" /></p>
+            </div>
+            <button type="submit" style={{ "backgroundColor": "white" }}>Login</button>
+          </form>
         </div>
-        <div>
-         <p> Password: <input name="password" type="password" /></p>
-        </div>
-        <button type="submit"  style={{"backgroundColor": "white"}}>Login</button>
-      </form>
-      </div>
       </div>
     </div>
   );

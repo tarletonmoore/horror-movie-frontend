@@ -22,44 +22,44 @@ export function MoviesIndex(props) {
         (selectedSubgenre === "" || movie.subgenre === selectedSubgenre)
     );
 
-    const playAudio = () => {
-      audioElement.play().catch((error) => {
-        console.error("Error playing audio:", error);
-      });
-    };    
+  const playAudio = () => {
+    audioElement.play().catch((error) => {
+      console.error("Error playing audio:", error);
+    });
+  };
 
   return (
     <div>
-    <img src={welcome} className="welcomeimage"/>
-           <div className="dropdown-box">
-               <a
-              className="nav-link dropdown-toggle"
-              href="#"
-              role="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
+      <img src={welcome} className="welcomeimage" />
+      <div className="dropdown-box">
+        <a
+          className="nav-link dropdown-toggle"
+          href="#"
+          role="button"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          <span className="box-text">Subgenres</span>
+        </a>
+
+        <ul className="dropdown-menu">
+          {[...uniqueSubgenres].map((subgenre) => (
+            <li
+              key={subgenre}
+              onClick={() => handleSubgenreChange(subgenre)}
+              className="dropdown-item"
             >
-              <span className="box-text">Subgenres</span>
-            </a>
-            
-          <ul className="dropdown-menu">
-            {[...uniqueSubgenres].map((subgenre) => (
-              <li
-                key={subgenre}
-                onClick={() => handleSubgenreChange(subgenre)}
-                className="dropdown-item"
-              >
-                {subgenre}
-              </li>
-            ))}
-            <li onClick={() => handleSubgenreChange("")} className="dropdown-item">
-              All
+              {subgenre}
             </li>
-          </ul>
-          </div>
-      
-<br></br>
-<br></br>
+          ))}
+          <li onClick={() => handleSubgenreChange("")} className="dropdown-item">
+            All
+          </li>
+        </ul>
+      </div>
+
+      <br></br>
+      <br></br>
       <h4 className="search"> Search filter:</h4>
       <input
         type="text"
@@ -88,12 +88,9 @@ export function MoviesIndex(props) {
 
                   <p>Description: {movie.description}</p>
                   <p>Subgenre: {movie.subgenre}</p>
-                  {/* <a href={`/movies/${movie.id}`}>
-                    <button>Go to show page</button>
-                  </a> */}
                   <Link to={`/movies/${movie.id}`}>
-          <button className="showbutton">Go to show page</button>
-        </Link>
+                    <button className="showbutton">Go to show page</button>
+                  </Link>
                   <br></br>
                 </div>
               </div>
@@ -102,8 +99,8 @@ export function MoviesIndex(props) {
         ) : (
           <div className="card">
             <div className="card-body">
-          <p>No movies match the selected criteria.</p>
-          </div>
+              <p>No movies match the selected criteria.</p>
+            </div>
           </div>
         )}
       </div>
