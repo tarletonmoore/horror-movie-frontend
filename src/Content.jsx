@@ -15,11 +15,11 @@ export function Content({ movies }) {
 
 
   const userData = () => {
-    if (localStorage.jwt === undefined && window.location.href !== "http://localhost:5173/login") {
+    if (localStorage.jwt === undefined && window.location.href !== "/login") {
       window.location.href = "/login"
     }
     else {
-      axios.get("http://localhost:3000/me.json").then((response) => {
+      axios.get("/me.json").then((response) => {
         setCurrentUser(response.data);
       });
     }

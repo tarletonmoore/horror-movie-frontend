@@ -7,7 +7,7 @@ export function RecentlyAdded() {
 
   const getRecentlyAdded = () => {
 
-    axios.get("http://localhost:3000/movies/recently_added").then(response => {
+    axios.get("/movies/recently_added").then(response => {
       setRecentlyAdded(response.data)
     })
   }

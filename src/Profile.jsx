@@ -7,7 +7,7 @@ export function Profile(props) {
 
 
   const handleDestroyFavorite = (id) => {
-    axios.delete(`http://localhost:3000/favorites/${id}.json`).then((response) => {
+    axios.delete(`/favorites/${id}.json`).then((response) => {
       const updatedFavorites = props.currentUser.favorites.filter(
         (fav) => fav.id !== id
       );
@@ -20,7 +20,7 @@ export function Profile(props) {
 
 
   const getRecommendations = () => {
-    axios.get("http://localhost:3000/movies/recommendations.json").then(response => {
+    axios.get("/movies/recommendations.json").then(response => {
       setRecomendations(response.data)
     })
   }

@@ -11,11 +11,11 @@ function App() {
   const [movies, setMovies] = useState([])
 
   const handleIndexMovies = () => {
-    if (localStorage.jwt === undefined && window.location.href !== "http://localhost:5173/login") {
+    if (localStorage.jwt === undefined && window.location.href !== "/login") {
       window.location.href = "/login"
     }
     else {
-      axios.get("http://localhost:3000/movies.json").then((response) => {
+      axios.get("/movies.json").then((response) => {
         setMovies(response.data);
       });
     }

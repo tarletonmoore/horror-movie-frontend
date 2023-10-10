@@ -5,11 +5,11 @@ import { Link } from "react-router-dom"
 export function MostLiked() {
   const [mostLiked, setMostLiked] = useState([])
   const getMostLiked = () => {
-    if (localStorage.jwt === undefined && window.location.href !== "http://localhost:5173/login") {
+    if (localStorage.jwt === undefined && window.location.href !== "/login") {
       window.location.href = "/login"
     }
     else {
-      axios.get("http://localhost:3000/movies/most_liked.json").then((response) => {
+      axios.get("/movies/most_liked.json").then((response) => {
         setMostLiked(response.data)
       })
     }

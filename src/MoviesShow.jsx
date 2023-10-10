@@ -27,11 +27,11 @@ export function MoviesShow(props) {
   };
 
   const getMovieData = () => {
-    if (localStorage.jwt === undefined && window.location.href !== "http://localhost:5173/login") {
+    if (localStorage.jwt === undefined && window.location.href !== "/login") {
       window.location.href = "/login"
     }
     else {
-      axios.get(`http://localhost:3000/movies/${params.id}.json`).then((response) => {
+      axios.get(`/movies/${params.id}.json`).then((response) => {
         setMovie(response.data);
         playWhisper()
       });
@@ -40,7 +40,7 @@ export function MoviesShow(props) {
   };
 
   const checkIsFavorited = () => {
-    axios.get("http://localhost:3000/favorites.json").then((response) => {
+    axios.get("/favorites.json").then((response) => {
       const favorites = response.data;
       const favorite = favorites.find((fav) => fav.movie_id === params.id);
       if (favorite) {
@@ -58,7 +58,7 @@ export function MoviesShow(props) {
     const params = new FormData(event.target);
 
     axios
-      .post("http://localhost:3000/reviews.json", params)
+      .post("/reviews.json", params)
       .then((response) => {
         playAudio()
         const newReview = response.data;
@@ -85,12 +85,12 @@ export function MoviesShow(props) {
     const params = new FormData(event.target);
 
     if (isFavorited) {
-      axios.delete(`http://localhost:3000/favorites/${favoriteId}.json`).then(() => {
+      axios.delete(`/favorites/${favoriteId}.json`).then(() => {
         setIsFavorited(false);
         setFavoriteId(null);
       });
     } else {
-      axios.post("http://localhost:3000/favorites.json", params).then((response) => {
+      axios.post("/favorites.json", params).then((response) => {
         setIsFavorited(true);
         setFavoriteId(response.data.id);
         window.location.href = "/me";
