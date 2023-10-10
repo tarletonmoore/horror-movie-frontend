@@ -11,7 +11,8 @@ function App() {
   const [movies, setMovies] = useState([])
 
   const handleIndexMovies = () => {
-    if (localStorage.jwt === undefined && window.location.href !== "/login") {
+    if (localStorage.jwt === undefined && window.location.href !== "http://localhost:5173/login" &&
+      window.location.href !== "https://horror-movie-frontend.onrender.com/login") {
       window.location.href = "/login"
     }
     else {
