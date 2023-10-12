@@ -184,18 +184,31 @@ body {
   padding: 0;
 }
 
-.demologin {
-  position: absolute;
-  top: 50%;
-  right: 200px;
-  transform: translateY(-50%);
+.login-container {
+  display: flex;
+  flex-direction: column;
+}
+
+
+@media (max-width: 600px) {
+
+  .demologin,
+  .demolabel {
+    margin-top: 10px;
+    position: static;
+    transform: none;
+    right: auto;
+  }
+}
+
+.demologin,
+.demolabel {
+  margin-top: 10px;
+  position: static;
+  transform: none;
+  right: auto;
 }
 
 .demolabel {
   color: white;
-  font-size: 20px;
-  position: absolute;
-  top: 20%;
-  right: 90px;
-  transform: translateY(-50%);
 }

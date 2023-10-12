@@ -57,26 +57,28 @@ export function Login() {
               <li key={error}>{error}</li>
             ))}
           </ul>
-          <form onSubmit={handleSubmit} >
-            <div>
-              <p className="loginemail"> Email: <input name="email" type="email" /></p>
-            </div>
-            <div>
-              <p> Password: <input name="password" type="password" /></p>
-            </div>
-            <button type="submit" style={{ "backgroundColor": "white" }}>Login</button>
-          </form>
-          <h1 className="demolabel">Click Here To Login On Demo Account</h1>
+          <div className="login-container">
+            <form onSubmit={handleSubmit} >
+              <div>
+                <p className="loginemail"> Email: <input name="email" type="email" /></p>
+              </div>
+              <div>
+                <p> Password: <input name="password" type="password" /></p>
+              </div>
+              <button type="submit" style={{ "backgroundColor": "white" }}>Login</button>
+            </form>
+            <h1 className="demolabel">Click Here To Login On Demo Account</h1>
 
-          <form onSubmit={handleDemoLogin} className="demologin">
-            <div>
-              <input name="email" type="hidden" value="john@sense.com" />
-            </div>
-            <div>
-              <input name="password" type="hidden" value="password" />
-            </div>
-            <button type="submit" style={{ "backgroundColor": "white" }}>Demo Login</button>
-          </form>
+            <form onSubmit={handleDemoLogin} className="demologin">
+              <div>
+                <input name="email" type="hidden" value="john@sense.com" />
+              </div>
+              <div>
+                <input name="password" type="hidden" value="password" />
+              </div>
+              <button type="submit" style={{ "backgroundColor": "white" }}>Demo Login</button>
+            </form>
+          </div>
         </div>
       </div>
     </div>
