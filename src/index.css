@@ -212,3 +212,16 @@ body {
 .demolabel {
   color: white;
 }
+
+.updateform {
+  background-color: darkred;
+  color: white;
+}
+
+.modal-main {
+  background-color: darkred;
+}
+
+button.close {
+  color: white;
+}

@@ -2,7 +2,9 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import audio from "./assets/child_laugh.mp3";
-import whispers from "./assets/whispers2.mp3"
+import whispers from "./assets/whispers2.mp3";
+import { Modal } from "./Modal";
+import { ReviewsUpdate } from "./ReviewUpdate";
 
 export function MoviesShow(props) {
   const [movie, setMovie] = useState({ reviews: [] });
@@ -10,7 +12,72 @@ export function MoviesShow(props) {
   const [favoriteId, setFavoriteId] = useState(null);
   const [whisperElement] = useState(new Audio(whispers));
   const [audioElement] = useState(new Audio(audio))
+  const [isReviewUpdateVisible, setIsReviewUpdateVisible] = useState(false);
+  const [currentReview, setCurrentReview] = useState({});
 
+
+  const handleUpdateReview = (id, params) => {
+    axios
+      .patch(`/reviews/${id}.json`, params)
+      .then((response) => {
+        const updatedReviewData = response.data;
+
+        setCurrentReview(updatedReviewData);
+
+        setMovie((prevMovie) => {
+          const updatedReviews = prevMovie.reviews.map((review) => {
+            if (review.id === updatedReviewData.id) {
+              return updatedReviewData;
+            }
+            return review;
+          });
+
+          return {
+            ...prevMovie,
+            reviews: updatedReviews,
+          };
+        });
+
+        setIsReviewUpdateVisible(false);
+      })
+      .catch((error) => {
+        console.error('Error updating review:', error);
+      });
+  };
+
+
+  const handleDestroyReview = (review) => {
+    console.log("handleDestroyReview", review);
+    axios.delete(`/reviews/${review.id}.json`)
+      .then((response) => {
+        console.log('Review deleted successfully', response);
+
+        setMovie((prevMovie) => ({
+          ...prevMovie,
+          reviews: prevMovie.reviews.filter((r) => r.id !== review.id),
+        }));
+      })
+      .catch((error) => {
+        console.error('Error deleting review:', error);
+      });
+  };
+
+
+  const handleClick = (rev) => {
+    handleDestroyReview(rev);
+  };
+
+
+  const handleShowReview = (review) => {
+    console.log("handleShowReview", review);
+    setIsReviewUpdateVisible(true);
+    setCurrentReview(review);
+  };
+
+  const handleClose = () => {
+    console.log("handleClose");
+    setIsReviewUpdateVisible(false);
+  };
 
   const params = useParams();
 
@@ -102,7 +169,6 @@ export function MoviesShow(props) {
 
 
 
-
   return (
     <div>
       <h1 className="showheader">Movie Info</h1>
@@ -146,8 +212,20 @@ export function MoviesShow(props) {
                 <p>
                   {rev.user.name}: {rev.review}
                 </p>
+                {rev.user.id === props.currentUser.id && (
+                  <>
+                    <button onClick={() => handleShowReview(rev)}>Change Review</button>
+                    <button onClick={() => handleClick(rev)}>Delete Review</button>
+                  </>
+                )}
+                <Modal show={isReviewUpdateVisible} onClose={handleClose}>
+                  <ReviewsUpdate review={currentReview} onUpdateReview={handleUpdateReview} />
+                </Modal>
+                <br></br>
+                <br></br>
               </div>
             ))}
+            <br></br>
             <form onSubmit={handleAddReview}>
               <div>
                 <input name="movie_id" type="hidden" defaultValue={params.id} />
