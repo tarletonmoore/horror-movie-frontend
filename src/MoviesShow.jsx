@@ -5,6 +5,7 @@ import audio from "./assets/child_laugh.mp3";
 import whispers from "./assets/whispers2.mp3";
 import { Modal } from "./Modal";
 import { ReviewsUpdate } from "./ReviewUpdate";
+import { StarRating } from "./StarRating";
 
 export function MoviesShow(props) {
   const [movie, setMovie] = useState({ reviews: [] });
@@ -167,6 +168,11 @@ export function MoviesShow(props) {
     }
   };
 
+  const ratingsForMovie = props.ratings.filter((r) => r.movie.id === movie.id);
+  const totalRatings = ratingsForMovie.length;
+  const sumRatings = ratingsForMovie.reduce((acc, r) => acc + r.rating, 0);
+  const averageRating = totalRatings > 0 ? sumRatings / totalRatings : 0;
+
 
 
   return (
@@ -180,6 +186,15 @@ export function MoviesShow(props) {
             <img src={movie.image_url} width="100px" height="150px" alt={movie.title} />
             <p>Description: {movie.description}</p>
             <p>Subgenre: {movie.subgenre}</p>
+            <h4 className="averageheader">Average Rating:</h4>
+            {averageRating > 0 ? (
+              <div>
+                <StarRating rating={averageRating} />
+                <p>Ratings: {totalRatings}</p>
+              </div>
+            ) : (
+              <p>No ratings yet.</p>
+            )}
             <form onSubmit={
               handleToggleFavorite
             }>
