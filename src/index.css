@@ -229,3 +229,28 @@ button.close {
 .averageheader {
   color: white;
 }
+
+.rating-input-container {
+  display: flex;
+  align-items: center;
+}
+
+select {
+  margin-right: 10px;
+}
+
+.ratingbutton {
+  margin-left: 10px;
+}
+
+.ratingbutton:hover {
+  background-image: url("./assets/blood_texture2.png");
+}
+
+.favoritesbutton:hover {
+  background-image: url("./assets/blood_texture2.png");
+}
+
+.reviewbutton:hover {
+  background-image: url("./assets/blood_texture2.png");
+}

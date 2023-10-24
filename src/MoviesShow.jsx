@@ -48,10 +48,8 @@ export function MoviesShow(props) {
 
 
   const handleDestroyReview = (review) => {
-    console.log("handleDestroyReview", review);
     axios.delete(`/reviews/${review.id}.json`)
       .then((response) => {
-        console.log('Review deleted successfully', response);
 
         setMovie((prevMovie) => ({
           ...prevMovie,
@@ -70,13 +68,11 @@ export function MoviesShow(props) {
 
 
   const handleShowReview = (review) => {
-    console.log("handleShowReview", review);
     setIsReviewUpdateVisible(true);
     setCurrentReview(review);
   };
 
   const handleClose = () => {
-    console.log("handleClose");
     setIsReviewUpdateVisible(false);
   };
 
@@ -168,6 +164,16 @@ export function MoviesShow(props) {
     }
   };
 
+  const handleAddRating = (event) => {
+    event.preventDefault()
+    const params = new FormData(event.target);
+
+    axios.post("/ratings.json", params).then(response => {
+      window.location.reload()
+
+    })
+  }
+
   const ratingsForMovie = props.ratings.filter((r) => r.movie.id === movie.id);
   const totalRatings = ratingsForMovie.length;
   const sumRatings = ratingsForMovie.reduce((acc, r) => acc + r.rating, 0);
@@ -195,6 +201,24 @@ export function MoviesShow(props) {
             ) : (
               <p>No ratings yet.</p>
             )}
+
+            <form onSubmit={handleAddRating}>
+              <div className="rating-input-container">
+                <select name="rating">
+                  <option value={1}>1</option>
+                  <option value={2}>2</option>
+                  <option value={3}>3</option>
+                  <option value={4}>4</option>
+                  <option value={5}>5</option>
+                </select>
+                <button type="submit" className="ratingbutton">Add rating</button>
+              </div>
+              <div>
+                <input name="movie_id" type="hidden" defaultValue={movie.id} />
+              </div>
+            </form>
+
+            <br></br>
             <form onSubmit={
               handleToggleFavorite
             }>
@@ -210,7 +234,7 @@ export function MoviesShow(props) {
                     </button>
                   </>
                 ) : (
-                  <button type="submit">
+                  <button type="submit" className="favoritesbutton">
                     Add to Favorites
                   </button>
                 )}
@@ -229,8 +253,8 @@ export function MoviesShow(props) {
                 </p>
                 {rev.user.id === props.currentUser.id && (
                   <>
-                    <button onClick={() => handleShowReview(rev)}>Change Review</button>
-                    <button onClick={() => handleClick(rev)}>Delete Review</button>
+                    <button onClick={() => handleShowReview(rev)} className="reviewbutton">Change Review</button>
+                    <button onClick={() => handleClick(rev)} className="reviewbutton">Delete Review</button>
                   </>
                 )}
                 <Modal show={isReviewUpdateVisible} onClose={handleClose}>
@@ -249,7 +273,7 @@ export function MoviesShow(props) {
                 <p>Review: <input defaultValue={movie.review} name="review" type="text" /></p>
               </div>
               <br></br>
-              <button>Add Review</button>
+              <button className="reviewbutton">Add Review</button>
             </form>
           </div>
         </div>
